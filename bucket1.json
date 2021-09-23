@@ -1,0 +1,59 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Access for Read/Write for IAM S3 ARN role for prod_ecs_instace_role",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::prod-prod-apache-php/*",
+            "Condition": {
+                "ForAnyValue:ArnLike": {
+                    "aws:PrincipalArn": "arn:aws:iam::288946686376:role/prod_ecs_instace_role/prod/*"
+                }
+            }
+        },
+        {
+            "Sid": "Access for List for IAM S3 ARN role for prod_ecs_instace_role2",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::prod-prod-apache-php",
+            "Condition": {
+                "ForAnyValue:ArnLike": {
+                    "aws:PrincipalArn": "arn:aws:iam::288946686376:role/prod_ecs_instace_role2/prod/*"
+                }
+            }
+        },
+        {
+            "Sid": "Access for Read for IAM S3 ARN role for prod_ecs_instace_role2",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::prod-prod-apache-php/*",
+            "Condition": {
+                "ForAnyValue:ArnLike": {
+                    "aws:PrincipalArn": "arn:aws:iam::288946686376:role/prod_ecs_instace_role2/prod/*"
+                }
+            }
+        },
+        {
+            "Sid": "Deny  for Write for IAM S3 ARN role for prod_ecs_instace_role2",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": [
+                "s3:AbortMultipartUpload",
+                "s3:Delete*",
+                "s3:Put*",
+                "s3:Replicate*",
+                "s3:RestoreObject"
+            ],
+            "Resource": "arn:aws:s3:::prod-prod-apache-php/*",
+            "Condition": {
+                "ForAnyValue:ArnLike": {
+                    "aws:PrincipalArn": "arn:aws:iam::288946686376:role/prod_ecs_instace_role2/prod/*"
+                }
+            }
+        }
+    ]
+}
