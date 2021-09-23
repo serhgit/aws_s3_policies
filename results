@@ -1,0 +1,31 @@
+
+[root@ip-10-0-201-148 ~]# docker exec -it b38eca3070b7 /bin/bash
+root@b38eca3070b7:/var/www/html# aws s3 ls  s3://prod-prod-apache-php/
+2021-09-22 11:32:13       1522 site_000-default.conf
+root@b38eca3070b7:/var/www/html# aws s3 cp  --recursive s3://prod-prod-apache-php/ .
+download: s3://prod-prod-apache-php/site_000-default.conf to ./site_000-default.conf
+root@b38eca3070b7:/var/www/html# aws s3 cp  site_000-default.conf s3://prod-prod-apache-php/
+upload failed: ./site_000-default.conf to s3://prod-prod-apache-php/site_000-default.conf An error occurred (AccessDenied) when calling the PutObject operation: Access Denied
+
+
+root@b38eca3070b7:/var/www/html# aws s3 ls  s3://prod-prod-apache-php2
+2021-09-22 17:49:50       1522 site_000-default.conf
+root@b38eca3070b7:/var/www/html# aws s3 cp  --recursive s3://prod-prod-apache-php2/ .
+download: s3://prod-prod-apache-php2/site_000-default.conf to ./site_000-default.conf
+root@b38eca3070b7:/var/www/html# aws s3 cp site_000-default.conf  s3://prod-prod-apache-php2/
+upload: ./site_000-default.conf to s3://prod-prod-apache-php2/site_000-default.conf
+
+
+
+
+root@8b61acdefa76:/var/www/html# aws s3 cp  --recursive s3://prod-prod-apache-php/ .
+download: s3://prod-prod-apache-php/site_000-default.conf to ./site_000-default.conf
+root@8b61acdefa76:/var/www/html# aws s3 cp  site_000-default.conf s3://prod-prod-apache-php/
+upload: ./site_000-default.conf to s3://prod-prod-apache-php/site_000-default.conf
+root@8b61acdefa76:/var/www/html# aws s3 ls  s3://prod-prod-apache-php2
+2021-09-22 17:52:05       1522 site_000-default.conf
+root@8b61acdefa76:/var/www/html# aws s3 cp  --recursive s3://prod-prod-apache-php2/ .
+download: s3://prod-prod-apache-php2/site_000-default.conf to ./site_000-default.conf
+root@8b61acdefa76:/var/www/html# aws s3 cp site_000-default.conf  s3://prod-prod-apache-php2/
+upload failed: ./site_000-default.conf to s3://prod-prod-apache-php2/site_000-default.conf An error occurred (AccessDenied) when calling the PutObject operation: Access Denied
+root@8b61acdefa76:/var/www/html#
